@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>S&P 500 Stock Ranking – AdaBoost Model</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner" style="text-align: center;">
+            <h1 style="
+                font-size: 2.2rem;
+                margin-bottom: 0.3rem;
+                width: 100%;
+            ">
+                S&amp;P 500 Ranking Dashboard
+            </h1>
+        </div>
+    </header>    
+
+    <main class="main">
+        <section class="controls-card">
+            <h2>Controls</h2>
+            <div class="controls-row">
+                <label for="k-input">
+                    Number of stocks to show (per side):
+                </label>
+                <input
+                    id="k-input"
+                    type="number"
+                    min="1"
+                    value="20"
+                />
+            </div>
+
+            <div class="controls-row">
+                <label>
+                    <input type="checkbox" id="refresh-checkbox" />
+                    Force refresh from latest data on server
+                </label>
+            </div>
+
+            <button id="load-btn" class="btn primary">
+                Get Rankings
+            </button>
+
+            <p id="status" class="status"></p>
+        </section>
+
+        <section class="results-grid">
+            <article class="card">
+                <h2>Top <span id="top-k-label">20</span> Ranked Stocks</h2>
+                <p class="card-subtitle">
+                    Highest predicted ranks (1 = best).
+                </p>
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Ticker</th>
+                            <th>Company</th>
+                            <th>Rank</th>
+                        </tr>
+                    </thead>
+                    <tbody id="top-body">
+                        <!-- Filled by script.js -->
+                    </tbody>
+                </table>
+            </article>
+
+            <article class="card">
+                <h2>Bottom <span id="bottom-k-label">20</span> Ranked Stocks</h2>
+                <p class="card-subtitle">
+                    Lowest predicted ranks (higher rank number = worse).
+                </p>
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Ticker</th>
+                            <th>Company</th>
+                            <th>Rank</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bottom-body">
+                        <!-- Filled by script.js -->
+                    </tbody>
+                </table>
+            </article>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>
+            Backend API:
+            <code id="api-url-display"></code>
+        </p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
